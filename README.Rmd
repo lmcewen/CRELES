@@ -26,7 +26,7 @@ Study Design:
 
 All R objects and files are located:
 1. Kobor Server: big_data/lmcewen/Rehkopf
-2. Stanford Server: [LINK](to be determined)
+2. Stanford Server: [LINK](tbd)
 
 LINKS TO CODE:
 
