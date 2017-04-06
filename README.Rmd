@@ -30,14 +30,14 @@ All R objects and files are located:
 
 LINKS TO CODE:
 
-[Preprocessing & Normalization](link)
+[Preprocessing & Normalization](https://github.com/lmcewen/CRELES/blob/master/PreprocessingNormalization.Rmd)
 
-[DNAm Age Analysis](link)
+[DNAm Age Analysis - TBA](link)
 
-[Cell Type Analysis](link)
+[Cell Type Analysis - TBA](link)
 
-[DMRcate Analysis](link)
+[DMRcate Analysis - TBA](link)
 
-[DNAm Variability Analysis](link)
+[DNAm Variability Analysis - TBA](link)
 
-[GLINT Analysis](link)
+[GLINT Analysis - TBA](link)
