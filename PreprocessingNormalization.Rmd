@@ -101,7 +101,7 @@ dend %>% set("leaves_pch", 19) %>%  # node point type
   set("labels_cex", .75) %>%
   plot()
 ```
-![SNP Dendrogram](https://github.com/lmcewen/CRELES/tree/master/GitFigs/CRELES_preprocessing_SNPs.png)
+![SNP Dendrogram](https://github.com/lmcewen/CRELES/blob/master/GitFigs/CRELES_preprocessing_SNPs.png)
 
 We do this to double check that our one technical replicate ("1659_Rep1" & "1659_Rep2") clusters together. We see here that this is the case, so based on the SNPs there are no obvious outliers at this point.
 
@@ -116,11 +116,11 @@ hist(test[,"1485"]) #clearly this is actually a male and NOT a female. Females w
 fdat <- fData(CRELES.raw)
 hist(betas.raw[rownames(subset(fdat, CHR == "X")),"1485"], main = "Incorrectly labelled sample - should be male", xlab= "beta value distribution of X chromosome")
 ```
-![MDS Plot](https://github.com/lmcewen/CRELES/tree/master/GitFigs/CRELES_preprocessingMDS.png)
+![MDS Plot](https://github.com/lmcewen/CRELES/blob/master/GitFigs/CRELES_preprocessingMDS.png)
 
 One sample is mislabelled (sample "1485"), seen on the right there is sample that is black clustering with the red (red = males, black = females). There seems to be a male mislabelled as a female in this crowd. We can investigate this more given females have X-inactivation of their X chromosome, which can be visualized by plotting the methylation of the X chromosome (females should be trimodal, males should be bimodal):
 
-![Incorrectly Labelled Sample](https://github.com/lmcewen/CRELES/tree/master/GitFigs/CRELES_preprocessing_mislabelledSample.png)
+![Incorrectly Labelled Sample](https://github.com/lmcewen/CRELES/blob/master/GitFigs/CRELES_preprocessing_mislabelledSample.png)
 
 ^^This should actually be a male given the x chromosome distribution. This was updated in the metadata seperately.
 
@@ -128,7 +128,7 @@ For reference, this is properly labelled female...
 ```{r eval = FALSE}
 hist(betas.raw[rownames(subset(fdat, CHR == "X")),"2055"], main = "Correctly labelled female", xlab= "beta value distribution of X chromosome") #SEE
 ```
-![Correctly Labelled Sample](https://github.com/lmcewen/CRELES/tree/master/GitFigs/CRELES_preprocessing_correctlyLabelled.png)
+![Correctly Labelled Sample](https://github.com/lmcewen/CRELES/blob/master/GitFigs/CRELES_preprocessing_correctlyLabelled.png)
 
 ### 3. Check distributions of betas & m-values
 ```{r eval=FALSE}
@@ -148,7 +148,7 @@ ggplot(plot_beta, aes(value, group=Var2, color=as.factor(nicoya.x)))+
   scale_color_aaas(guide = guide_legend(title = "Nicoya Group"))
 ```
 
-![raw beta distribution](https://github.com/lmcewen/CRELES/tree/master/GitFigs/CRELES_preprocessing_rawbeta_dist.png)
+![raw beta distribution](https://github.com/lmcewen/CRELES/blob/master/GitFigs/CRELES_preprocessing_rawbeta_dist.png)
 
 ```{r eval = FALSE}
 #MVALS
@@ -165,7 +165,7 @@ ggplot(plot_mvals, aes(value, group=Var2, color=as.factor(nicoya.x)))+
   scale_color_manual(values = c("darkorchid4","forestgreen"), guide = guide_legend(title = "Nicoya Group"))
 ```
 
-![raw m-value distribution](https://github.com/lmcewen/CRELES/tree/master/GitFigs/CRELES_preprocessing_rawmvas_dist.png)
+![raw m-value distribution](https://github.com/lmcewen/CRELES/blob/master/GitFigs/CRELES_preprocessing_rawmvas_dist.png)
 
 
 
@@ -260,7 +260,7 @@ meta_continuous<-meta[,c("bmi.x","age","crp","telobp.x","kneeAvg")]
 heat_scree_plot(Loadings, Importance)
 
 ```
-![PCA heat scree plot before SWAN](https://github.com/lmcewen/CRELES/tree/master/GitFigs/CRELES_normalization_heatscreeprenorm.png)
+![PCA heat scree plot before SWAN](https://github.com/lmcewen/CRELES/blob/master/GitFigs/CRELES_normalization_heatscreeprenorm.png)
 
 
 ### 2a. Probe type normalization - SWAN
@@ -303,7 +303,7 @@ vars <- PCA_full$sdev^2
 Importance<-vars/sum(vars)
 heat_scree_plot(Loadings, Importance)
 ```
-![PCA heat scree plot after SWAN](https://github.com/lmcewen/CRELES/tree/master/GitFigs/CRELES_normalization_heatscree_afterSWAN.png)
+![PCA heat scree plot after SWAN](https://github.com/lmcewen/CRELES/blob/master/GitFigs/CRELES_normalization_heatscree_afterSWAN.png)
 
 
 ### 3a. Correct for technical variation (sentrid ID) - ComBat
@@ -331,7 +331,7 @@ vars <- PCA_full$sdev^2
 Importance<-vars/sum(vars)
 heat_scree_plot(Loadings, Importance)
 ```
-![PCA heat scree plot after SWAN and combat for sentrix ID](https://github.com/lmcewen/CRELES/tree/master/GitFigs/CRELES_normalization_heatscree_afterswanbat.png)
+![PCA heat scree plot after SWAN and combat for sentrix ID](https://github.com/lmcewen/CRELES/blob/master/GitFigs/CRELES_normalization_heatscree_afterswanbat.png)
 
 ### 3c. Correct for technical variation (sentrix row) - ComBat
 ```{r eval = FALSE}
@@ -378,7 +378,7 @@ save(CRELES_notcelltypecorrected, file = "/home/lmcewen/FinalObjects/CRELES_notc
 meta <- meta[!rownames(meta)%in%replicate,]
 rownames(meta) <- gsub("_Rep1","", rownames(meta))
 ```
-![PCA heat scree plot after SWAN and combat for both sentrix ID and row](https://github.com/lmcewen/CRELES/tree/master/GitFigs/CRELES_normalization_heatscree_afterswanbat2.png)
+![PCA heat scree plot after SWAN and combat for both sentrix ID and row](https://github.com/lmcewen/CRELES/blob/master/GitFigs/CRELES_normalization_heatscree_afterswanbat2.png)
 
 ### 4a. Estimate cell type proportions - look at PCA plot - remove variance
 ```{r eval = FALSE}
@@ -422,7 +422,7 @@ vars <- PCA_full$sdev^2
 Importance<-vars/sum(vars)
 heat_scree_plot(Loadings, Importance)
 ```
-![PCA heat scree plot after SWAN and combat for both sentrix ID and row but include estimated cell types](https://github.com/lmcewen/CRELES/tree/master/GitFigs/CRELES_normalization_heatscree_afterswanbat2_withcelltypes.png)
+![PCA heat scree plot after SWAN and combat for both sentrix ID and row but include estimated cell types](https://github.com/lmcewen/CRELES/blob/master/GitFigs/CRELES_normalization_heatscree_afterswanbat2_withcelltypes.png)
 
 ### 4c. Remove cell type associated variance
 ```{r eval = FALSE}
@@ -468,6 +468,6 @@ vars <- PCA_full$sdev^2
 Importance<-vars/sum(vars)
 heat_scree_plot(Loadings, Importance)
 ```
-![PCA heat scree plot after SWAN and combat for both sentrix ID and row but include estimated cell types](https://github.com/lmcewen/CRELES/tree/master/GitFigs/CRELES_normalization_heatscree_afterswanbat2decon.png)
+![PCA heat scree plot after SWAN and combat for both sentrix ID and row but include estimated cell types](https://github.com/lmcewen/CRELES/blob/master/GitFigs/CRELES_normalization_heatscree_afterswanbat2decon.png)
 
 
