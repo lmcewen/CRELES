@@ -7,7 +7,7 @@ output: html_document
 
 Please email: lmcewen@cmmt.ubc.ca if you have any questions about this code. 
 
-### Publication details (currently submitted to Epigenetics and Chromatin):
+### Publication details (accepted at Epigenetics and Chromatin on April 12, 2017):
 __Title:__ Differential DNA methylation and lymphocyte proportions in a Costa Rican high longevity region
 
 __Authors:__ Lisa M. McEwen, BSc; Alexander M. Morin, BSc.; Rachel D. Edgar, MSc.; Julia L. MacIsaac, PhD; Meaghan J. Jones, PhD.; William H. Dow, PhD.; Luis Rosero-Bixby, PhD.; Michael S. Kobor, PhD.; David H. Rehkopf, ScD., MPH.
@@ -63,10 +63,9 @@ biocLite("IlluminaHumanMethylation450kmanifest")
 source('~/GitScripts/mypreprocessingfunctions.R')
 
 #objects
-allDat <- ("OriginalFiles/CRELES_allDat.txt") #exported from GenomeStudio software, already colour corrected and background subtracted)
+allDat <- ("/home/lmcewen/FinalObjects/CRELES_allDat.txt") #exported from GenomeStudio software, already colour corrected and background subtracted)
 avgBeta <- ("OriginalFiles/CRELES_avgBeta.txt")
 qcDat <- ("OriginalFiles/CRELES_qcDat.txt")
-meta <- read.csv("OriginalFiles/CRELES_meta.csv", row.names=1)
 ```
 
 Create methylumi objects...
@@ -75,10 +74,12 @@ dim(CRELES.raw <- lumiMethyR(allDat)) # probes = 485,577, n = 96
 dim(CRELES.2.raw <- methylumiR(avgBeta, qcfile = qcDat)) # probes = 485,577, n = 96
 sampleNames(CRELES.raw) <- gsub("_R2","", sampleNames(CRELES.raw))
 sampleNames(CRELES.raw) <- gsub(" ","",sampleNames(CRELES.raw))
-pdat_withRep<-read.csv("/home/lmcewen/Rehkopf/CRELES_meta_withRep.csv",row.names=1)
-pdat2 <- pdat_withRep[sampleNames(CRELES.raw),]
-identical(rownames(pdat2), sampleNames(CRELES.raw))
-pData(CRELES.raw) <- meta
+meta_withrep<-read.csv("/home/lmcewen/FinalObjects/meta_withrep.csv",row.names=1)
+meta_withrep <- meta_withrep[sampleNames(CRELES.raw),]
+identical(rownames(meta_withrep), sampleNames(CRELES.raw))
+pData(CRELES.raw) <- meta_withrep
+
+save(CRELES.raw, file ="/home/lmcewen/FinalObjects/CRELES.raw.RData")
 ```
 
 
@@ -86,8 +87,7 @@ pData(CRELES.raw) <- meta
 1. Denodogram of samples based on SNP probes
 2. MDS plot of samples to illustrate outliers
 3. Check beta and m-value distributions
-4. 
-5. 
+
 
 ### 1. Denodogram of samples based on SNP probes
 
@@ -101,7 +101,7 @@ dend %>% set("leaves_pch", 19) %>%  # node point type
   set("labels_cex", .75) %>%
   plot()
 ```
-[SNP Dendrogram](https://github.com/kobor-lab/Publication-Scripts/blob/master/Lisa%20McEwen/Nicoya%20Paper/GitFigs/CRELES_preprocessing_SNPs.png)
+![SNP Dendrogram](https://github.com/kobor-lab/Publication-Scripts/blob/master/Lisa%20McEwen/Nicoya%20Paper/GitFigs/CRELES_preprocessing_SNPs.png)
 
 We do this to double check that our one technical replicate ("1659_Rep1" & "1659_Rep2") clusters together. We see here that this is the case, so based on the SNPs there are no obvious outliers at this point.
 
@@ -118,7 +118,7 @@ hist(betas.raw[rownames(subset(fdat, CHR == "X")),"1485"], main = "Incorrectly l
 ```
 ![MDS Plot](https://github.com/kobor-lab/Publication-Scripts/blob/master/Lisa%20McEwen/Nicoya%20Paper/GitFigs/CRELES_preprocessingMDS.png)
 
-Uh ohhh...there is one sample that is mislabelled (sample "1485"), seen on the right there is sample that is black clustering with the red (red = males, black = females). There seems to be a male mislabelled as a female in this crowd. We can investigate this more given females have X-inactivation of their X chromosome, which can be visualized by plotting the methylation of the X chromosome (females should be trimodal, males should be bimodal):
+One sample is mislabelled (sample "1485"), seen on the right there is sample that is black clustering with the red (red = males, black = females). There seems to be a male mislabelled as a female in this crowd. We can investigate this more given females have X-inactivation of their X chromosome, which can be visualized by plotting the methylation of the X chromosome (females should be trimodal, males should be bimodal):
 
 ![Incorrectly Labelled Sample](https://github.com/kobor-lab/Publication-Scripts/blob/master/Lisa%20McEwen/Nicoya%20Paper/GitFigs/CRELES_preprocessing_mislabelledSample.png)
 
@@ -166,6 +166,8 @@ ggplot(plot_mvals, aes(value, group=Var2, color=as.factor(nicoya.x)))+
 ```
 
 ![raw m-value distribution](https://github.com/kobor-lab/Publication-Scripts/blob/master/Lisa%20McEwen/Nicoya%20Paper/GitFigs/CRELES_preprocessing_rawmvas_dist.png)
+
+
 
 
 ## Probe Filtering
@@ -251,7 +253,7 @@ meta$lowWealth<- as.factor(meta$lowWealth)
 
 meta_categorical<-meta[,c("Sentrix_ID", "Row", "nicoya.x","male.x", "lowEdu", "lowWealth")]
 meta_continuous<-meta[,c("bmi.x","age","crp","telobp.x","kneeAvg")]
-c(colnames(meta_categorical),colnames(meta_continuous))
+
 
 
 #Apply function on PCA results, pulls in the meta data and beta values from above
@@ -289,6 +291,11 @@ save(CRELES.swan,file = "/home/lmcewen/FinalObjects/CRELES.swan.RData")
 
 ### 2b. Look at heat scree PCA plot after SWAN
 ```{r eval = FALSE}
+load("/home/lmcewen/FinalObjects/CRELES.swan.RData")
+meta <- pdat_withRep[colnames(CRELES.swan),]
+meta_categorical<-meta[,c("Sentrix_ID", "Row", "nicoya.x","male.x", "lowEdu", "lowWealth")]
+meta_continuous<-meta[,c("bmi.x","age","crp","telobp.x","kneeAvg")]
+ord <- 1:11
 CRELES_swan_betas <- betas(CRELES.swan)
 PCA_full<-princomp(na.omit(CRELES_swan_betas))
 Loadings<-as.data.frame(unclass(PCA_full$loadings))
@@ -308,10 +315,17 @@ exprs(CRELES.swan.bat) <- test.bat ##changing expression data to now be combat c
 save(CRELES.swan.bat, file = "/home/lmcewen/FinalObjects/CRELES.swan.bat.RData")
 ```
 
+
 ### 3b. Look at heat scree PCA plot after ComBat (sentrix ID)
 ```{r eval = FALSE}
+load("/home/lmcewen/FinalObjects/CRELES.swan.bat.RData")
+meta <- pdat_withRep[colnames(CRELES_swan.bat_betas),]
+meta_categorical<-meta[,c("Sentrix_ID", "Row", "nicoya.x","male.x", "lowEdu", "lowWealth")]
+meta_continuous<-meta[,c("bmi.x","age","crp","telobp.x","kneeAvg")]
+ord <- 1:11
+
 CRELES_swan.bat_betas <- betas(CRELES.swan.bat)
-PCA_full<-princomp(na.omit(CRELES_swanbat_betas))
+PCA_full<-princomp(na.omit(CRELES_swan.bat_betas))
 Loadings<-as.data.frame(unclass(PCA_full$loadings))
 vars <- PCA_full$sdev^2
 Importance<-vars/sum(vars)
@@ -319,49 +333,141 @@ heat_scree_plot(Loadings, Importance)
 ```
 ![PCA heat scree plot after SWAN and combat for sentrix ID](https://github.com/kobor-lab/Publication-Scripts/blob/master/Lisa%20McEwen/Nicoya%20Paper/GitFigs/CRELES_normalization_heatscree_afterswanbat.png)
 
-### 3c. Correct for technical variation (sentrid row) - ComBat
+### 3c. Correct for technical variation (sentrix row) - ComBat
 ```{r eval = FALSE}
 #ComBat for row
+head(betas(CRELES.swan.bat))
 CRELES.swan.bat.2 <- CRELES.swan.bat
-mod <- model.matrix(~as.factor(male) + as.factor(age) + as.factor(nicoya), data=metadata) #variables want to keep
-dim(mod)
-test.bat.2 <- ComBat(exprs(CRELES.swan.bat), metadata$Row, mod) #numCovs is the columns in which to be treated as continuous variables
+test.bat.2 <- ComBat(exprs(CRELES.swan.bat), meta$Row) 
 
-exprs(CRELES.swan.bat.2) <- test.bat.2 ##changing expression data to now be combat corrected for sentrix ID
+exprs(CRELES.swan.bat.2) <- test.bat.2 
 save(CRELES.swan.bat.2, file = "/home/lmcewen/FinalObjects/CRELES.swan.bat.2.RData")
+
+#remove technical replicate
+replicate <- c("1659_Rep2")
+CRELES.swan.bat.2<- CRELES.swan.bat.2[, !sampleNames(CRELES.swan.bat.2)%in%replicates]
+sampleNames(CRELES.swan.bat.2) <- gsub("_Rep1",sampleNames(CRELES.swan.bat.2))
+sampleNames(CRELES.swan.bat.2) <- gsub("_R2",sampleNames(CRELES.swan.bat.2))
+CRELES_notcelltypecorrected <- CRELES.swan.bat.2
+
+save(CRELES_notcelltypecorrected, file = "/home/lmcewen/FinalObjects/CRELES_notcelltypecorrected.RData")
 ```
 
 ### 3d. Look at heat scree PCA plot after ComBat (sentrix ID and row)
 ```{r}
-CRELES_swan.bat.2_betas <- betas(CRELES.swan.bat.2)
-PCA_full<-princomp(na.omit(CRELES_swan.bat.2_betas))
+load("/home/lmcewen/FinalObjects/CRELES_notcelltypecorrected.RData")
+
+meta_categorical<-meta[,c("Sentrix_ID", "Row", "nicoya.x","male.x", "lowEdu", "lowWealth")]
+meta_continuous<-meta[,c("bmi.x","age","crp","telobp.x","kneeAvg")]
+
+CRELES_notcelltypecorrected_betas <- betas(CRELES_notcelltypecorrected)
+PCA_full<-princomp(na.omit(CRELES_notcelltypecorrected_betas))
 Loadings<-as.data.frame(unclass(PCA_full$loadings))
 vars <- PCA_full$sdev^2
 Importance<-vars/sum(vars)
 heat_scree_plot(Loadings, Importance)
+
+##remove technical replicate
+replicate <- c("1659_Rep2")
+CRELES.swan.bat.2<- CRELES.swan.bat.2[, !sampleNames(CRELES.swan.bat.2)%in%replicates]
+sampleNames(CRELES.swan.bat.2) <- gsub("_Rep1",sampleNames(CRELES.swan.bat.2))
+sampleNames(CRELES.swan.bat.2) <- gsub("_R2",sampleNames(CRELES.swan.bat.2))
+CRELES_notcelltypecorrected <- CRELES.swan.bat.2
+save(CRELES_notcelltypecorrected, file = "/home/lmcewen/FinalObjects/CRELES_notcelltypecorrected.RData")
+
+meta <- meta[!rownames(meta)%in%replicate,]
+rownames(meta) <- gsub("_Rep1","", rownames(meta))
 ```
 ![PCA heat scree plot after SWAN and combat for both sentrix ID and row](https://github.com/kobor-lab/Publication-Scripts/blob/master/Lisa%20McEwen/Nicoya%20Paper/GitFigs/CRELES_normalization_heatscree_afterswanbat2.png)
 
 ### 4a. Estimate cell type proportions - look at PCA plot - remove variance
 ```{r eval = FALSE}
+CRELES_celltypecorrected <- CRELES_notcelltypecorrected 
 
+#load all libraries
+library(minfi)
+library(FlowSorted.Blood.450k)
+library(IlluminaHumanMethylation450kmanifest)
+library(quadprog)
+library(limma)
+
+#deconvolution script
+RGset = as.data.frame(betas(CRELES_celltypecorrected))
+source("/home/lmcewen/R Scripts/ECC2_original.R")
+detach("package:dplyr", unload=TRUE)
+BiocGenerics::combine
+cellprop <- ECC2(RGset)
+save(cellprop,file="CRELES_predicted_cellprops.RData")
+cellpropcounts <- cellprop$counts
+write.csv(cellpropcounts, file = "cellpropcounts.csv")
+         
+diff <- as.data.frame(cellprop$counts)
+identical(colnames(betas(CRELES.swan.bat.2.decon)), rownames(diff)) #TRUE
 ```
 
 ### 4b. look at PCA plot with cell type proportions
 ```{r eval = FALSE}
+#merge estimated cell types with meta
 
+meta <- cbind(meta, cellprop$counts)
+colnames(meta)
+meta_categorical<-meta[,c("Sentrix_ID", "Row", "nicoya.x","male.x", "lowEdu", "lowWealth")]
+meta_continuous<-meta[,c("bmi.x","age","crp","telobp.x","kneeAvg","CD8T","Bcell","CD4T", "NK", "Gran", "Mono")]
+
+ord <-1:17
+CRELES_notcelltypecorrected_betas <- betas(CRELES_notcelltypecorrected)
+PCA_full<-princomp(na.omit(CRELES_notcelltypecorrected_betas))
+Loadings<-as.data.frame(unclass(PCA_full$loadings))
+vars <- PCA_full$sdev^2
+Importance<-vars/sum(vars)
+heat_scree_plot(Loadings, Importance)
 ```
-![PCA heat scree plot after SWAN and combat for both sentrix ID and row but include estimated cell types](https://github.com/kobor-lab/Publication-Scripts/blob/master/Lisa%20McEwen/Nicoya%20Paper/GitFigs/CRELES_preprocessing_rawmvas_dist.png)
+![PCA heat scree plot after SWAN and combat for both sentrix ID and row but include estimated cell types](https://github.com/kobor-lab/Publication-Scripts/blob/master/Lisa%20McEwen/Nicoya%20Paper/GitFigs/CRELES_normalization_heatscree_afterswanbat2_withcelltypes.png)
 
 ### 4c. Remove cell type associated variance
 ```{r eval = FALSE}
+betas <- betas(CRELES_celltypecorrected)
 
+# fit linear model for cell type effects on each probe in betas
+betas.lm <- apply(betas, 1, function(x){
+  blood <- diff[colnames(betas),]
+  lm(x~0+CD8T+CD4T+NK+Bcell+Mono+Gran,data=blood)
+})
+
+# extract matrix of residuals from resulting linear models
+residuals <- t(sapply(betas.lm, function(x)residuals(summary(x))))
+colnames(residuals) <- colnames(betas) # re-name residuals columns with sample names
+
+# add the residuals of each regression model to the mean methylation value of each probe (mean across all samples) to obtain the “adjusted” methylation data.
+adj.residuals <- residuals+matrix(apply(betas, 1, mean), nrow = nrow(residuals), ncol = ncol(residuals))
+# To make sure we do not induce any NAs into the dataset when we convert the beta values back M-values (by log2 transformation), we need to ensure we do not have any corrected beta values that are greater or equal to zero or any beta values that are greater than 1.
+
+adj.residuals[adj.residuals<=0] <- 0.001 # convert any values that are less than or equal to zero to 0.001
+adj.residuals[adj.residuals>1] <- 0.999 # convert any values that are greater than 1 to 0.999
+adj.M.values<-beta2m(adj.residuals)
+any(is.na(adj.M.values)) # should be FALSE indicating there are no NAs
+summary(adj.residuals)
+
+# replace adjusted data into a cloned methylumi object
+identical(rownames(adj.M.values), rownames(betas(CRELES.swan.bat.2.decon))) #should be TRUE
+identical(colnames(adj.M.values), colnames(betas(CRELES.swan.bat.2.decon))) #should be TRUE
+exprs(CRELES_celltypecorrected) <- adj.M.values
+all.equal(betas(CRELES_celltypecorrected), adj.residuals)
+
+save(CRELES_celltypecorrected,file = "/home/lmcewen/FinalObjects/CRELES_celltypecorrected.RData")
 ```
 
 ### 4d. Look at heat scree PCA plot after cell type correction
 ```{r eval = FALSE}
+load("/home/lmcewen/FinalObjects/CRELES_celltypecorrected.RData")
 
+CRELES_celltypecorrected_betas <- betas(CRELES_celltypecorrected)
+PCA_full<-princomp(na.omit(CRELES_celltypecorrected_betas))
+Loadings<-as.data.frame(unclass(PCA_full$loadings))
+vars <- PCA_full$sdev^2
+Importance<-vars/sum(vars)
+heat_scree_plot(Loadings, Importance)
 ```
-![PCA heat scree plot after SWAN, combat (both rounds), and cell type adjustment](https://github.com/kobor-lab/Publication-Scripts/blob/master/Lisa%20McEwen/Nicoya%20Paper/GitFigs/CRELES_preprocessing_rawmvas_dist.png)
+![PCA heat scree plot after SWAN and combat for both sentrix ID and row but include estimated cell types](https://github.com/kobor-lab/Publication-Scripts/blob/master/Lisa%20McEwen/Nicoya%20Paper/GitFigs/CRELES_normalization_heatscree_afterswanbat2decon.png)
 
 
