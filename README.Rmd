@@ -30,14 +30,14 @@ All R objects and files are located:
 
 LINKS TO CODE:
 
-[Preprocessing & Normalization](https://github.com/lmcewen/CRELES/blob/master/PreprocessingNormalization.Rmd)
+[Preprocessing & Normalization](https://github.com/lmcewen/CRELES/blob/master/NICOYA_PreprocessingNormaltion_toupload.Rmd)
 
-[DNAm Age Analysis - TBA](link)
+[DNAm Age Analysis](https://github.com/lmcewen/CRELES/blob/master/NICOYA_DNAmAgeAnalysis_toupload.Rmd)
 
-[Cell Type Analysis - TBA](link)
+[Cell Type Analysis](https://github.com/lmcewen/CRELES/blob/master/NICOYA_CellTypeAnalyses_toupload.Rmd)
 
-[DMRcate Analysis - TBA](link)
+[DMRcate Analysis](https://github.com/lmcewen/CRELES/blob/master/NICOYA_DMRCATE_toupload)
 
-[DNAm Variability Analysis - TBA](link)
+[DNAm Variability Analysis](https://github.com/lmcewen/CRELES/blob/master/NICOYA_DNAm_Variability_analyses_toupload.Rmd)
 
-[GLINT Analysis - TBA](link)
+[GLINT Analysis - TBD](link)
