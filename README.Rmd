@@ -30,14 +30,14 @@ All R objects and files are located:
 
 LINKS TO CODE:
 
-[Preprocessing & Normalization](https://github.com/lmcewen/CRELES/blob/master/NICOYA_PreprocessingNormaltion_toupload.Rmd)
+[Preprocessing & Normalization](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_CellTypeAnalyses_toupload.Rmd)
 
-[DNAm Age Analysis](https://github.com/lmcewen/CRELES/blob/master/NICOYA_DNAmAgeAnalysis_toupload.Rmd)
+[DNAm Age Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_DNAmAgeAnalysis_toupload.Rmd)
 
-[Cell Type Analysis](https://github.com/lmcewen/CRELES/blob/master/NICOYA_CellTypeAnalyses_toupload.Rmd)
+[Cell Type Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_CellTypeAnalyses_toupload.Rmd)
 
-[DMRcate Analysis](https://github.com/lmcewen/CRELES/blob/master/NICOYA_DMRCATE_toupload)
+[DMRcate Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_DMRCATE_toupload)
 
-[DNAm Variability Analysis](https://github.com/lmcewen/CRELES/blob/master/NICOYA_DNAm_Variability_analyses_toupload.Rmd)
+[DNAm Variability Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_DNAm_Variability_analyses_toupload.Rmd)
 
 [GLINT Analysis - TBD](link)
