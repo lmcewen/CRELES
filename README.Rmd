@@ -36,7 +36,7 @@ LINKS TO CODE:
 
 [Cell Type Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_CellTypeAnalyses_toupload.Rmd)
 
-[DMRcate Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_DMRCATE_toupload)
+[DMRcate Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_DMRCATE_toupload.Rmd)
 
 [DNAm Variability Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_DNAm_Variability_analyses_toupload.Rmd)
 
