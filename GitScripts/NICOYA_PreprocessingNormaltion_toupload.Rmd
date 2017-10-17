@@ -101,7 +101,7 @@ dend %>% set("leaves_pch", 19) %>%  # node point type
   set("labels_cex", .75) %>%
   plot()
 ```
-![SNP Dendrogram](https://github.com/kobor-lab/Publication-Scripts/blob/master/Lisa%20McEwen/Nicoya%20Paper/GitFigs/CRELES_preprocessing_SNPs.png)
+![SNP Dendrogram](https://github.com/lmcewen/CRELES/blob/master/GitFigs/CRELES_preprocessing_SNPs.png)
 
 We do this to double check that our one technical replicate ("1659_Rep1" & "1659_Rep2") clusters together. We see here that this is the case, so based on the SNPs there are no obvious outliers at this point.
 
