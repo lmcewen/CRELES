@@ -40,6 +40,6 @@ LINKS TO CODE:
 
 [DNAm Variability Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_DNAm_Variability_analyses_toupload.Rmd)
 
-[GLINT Analysis - TBD](link)
+[GLINT Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/Nicoya_glint.Rmd)
 
 [Pyro verification](https://github.com/lmcewen/CRELES/blob/master/GitScripts/Nicoya_pyro.Rmd)
