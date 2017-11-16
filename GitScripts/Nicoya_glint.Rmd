@@ -30,6 +30,11 @@ All R objects and files are located:
 reference: [http://safrabio.cs.tau.ac.il/download/Papers/324.pdf](http://safrabio.cs.tau.ac.il/download/Papers/324.pdf)
 
 ```{r}
+#this is how I saved my files (hardest part was trying to figure out the right format!):
+write.table(mydatafile_nov10, file = "~/rehkopf glint/datafile_nov10.txt", sep = "\t", row.names=F, col.names=T, quote = F)
+write.table(mycovar, file = "~/rehkopf glint/mycovar_nov10.txt", sep = "\t", row.names=F, col.names=T,quote = F)
+write.table(mypheno, file = "~/rehkopf glint/mypheno_nov10.txt", sep = "\t", row.names=F, col.names=T,quote = F)
+
 #final files:
 write.table(mydatafile_nov10, file = "~/rehkopf glint/datafile_nov10.txt", sep = "\t", row.names=F, col.names=T, quote = F)
 write.table(mycovar, file = "~/rehkopf glint/mycovar_nov10.txt", sep = "\t", row.names=F, col.names=T,quote = F)
