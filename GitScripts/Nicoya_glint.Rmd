@@ -30,6 +30,12 @@ All R objects and files are located:
 reference: [http://safrabio.cs.tau.ac.il/download/Papers/324.pdf](http://safrabio.cs.tau.ac.il/download/Papers/324.pdf)
 
 ```{r}
+#creating required files
+load("/big_data/lmcewen/Rehkopf/pdat_correctedjune2016.RData")
+pdat <- pdat_correctedjune2016
+mycovar  <- as.data.frame(cbind(ID = rownames(pdat), Group = pdat$nicoya.y, Sex = pdat$male.x, CD8Naive = as.numeric(pdat$CD8.naive), CD8memory = as.numeric(pdat$CD8pCD28nCD45RAn), CD4 = as.numeric(pdat$CD4T), Gran= as.numeric(pdat$Gran), NK= as.numeric(pdat$NK), Mono=as.numeric(pdat$Mono), PBlast=as.numeric(pdat$PlasmaBlast),Age= as.numeric(pdat$age.x)))
+mypheno <- as.data.frame(cbind(ID = rownames(pdat),Group = pdat$nicoya.x, Age =as.numeric(pdat$age)))
+
 #this is how I saved my files (hardest part was trying to figure out the right format!):
 write.table(mydatafile_nov10, file = "~/rehkopf glint/datafile_nov10.txt", sep = "\t", row.names=F, col.names=T, quote = F)
 write.table(mycovar, file = "~/rehkopf glint/mycovar_nov10.txt", sep = "\t", row.names=F, col.names=T,quote = F)
