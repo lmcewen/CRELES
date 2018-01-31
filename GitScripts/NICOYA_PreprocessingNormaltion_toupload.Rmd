@@ -136,7 +136,7 @@ hist(betas.raw[rownames(subset(fdat, CHR == "X")),"2055"], main = "Correctly lab
 pdat_withRep$SampleID <- rownames(pdat_withRep) 
 
 #BETAS
-betas_sub <-betas.raw[sample(1:nrow(betas.raw), 20000),]
+betas_sub <-betas.raw[sample(1:nrow(betas.raw), 200000),]
 betas_sub_m <- melt(betas_sub)
 plot_beta<-merge(betas_sub_m,pdat_withRep, by.x="Var2", by.y="SampleID")
 
@@ -153,7 +153,7 @@ ggplot(plot_beta, aes(value, group=Var2, color=as.factor(nicoya.x)))+
 ```{r eval = FALSE}
 #MVALS
 rawMvals <- exprs(CRELES.raw)
-mvals_sub <-rawMvals[sample(1:nrow(rawMvals), 20000),]
+mvals_sub <-rawMvals[sample(1:nrow(rawMvals), 200000),]
 mvals_sub_m <- melt(mvals_sub)
 plot_mvals<-merge(mvals_sub_m,pdat_withRep, by.x="Var2", by.y="SampleID")
 
