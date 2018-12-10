@@ -7,13 +7,14 @@ output: html_document
 
 Please email: lmcewen@bcchr.ca if you have any questions about this code. 
 
-### Publication details (currently submitted to Epigenetics and Chromatin):
+### Publication details:
 __Title:__ Differential DNA methylation and lymphocyte proportions in a Costa Rican high longevity region
 
 __Authors:__ Lisa M. McEwen, BSc; Alexander M. Morin, BSc.; Rachel D. Edgar, MSc.; Julia L. MacIsaac, PhD; Meaghan J. Jones, PhD.; William H. Dow, PhD.; Luis Rosero-Bixby, PhD.; Michael S. Kobor, PhD.; David H. Rehkopf, ScD., MPH.
 
 __Date:__ April 2017
 
+__Paper Link:__ [Click here](https://epigeneticsandchromatin.biomedcentral.com/articles/10.1186/s13072-017-0128-2)
 
 Overview
 ======
