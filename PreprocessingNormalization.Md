@@ -14,7 +14,7 @@ __Authors:__ Lisa M. McEwen, BSc; Alexander M. Morin, BSc.; Rachel D. Edgar, MSc
 
 __Date:__ April 2017
 
-__Paper Link:__ [Click here] (https://epigeneticsandchromatin.biomedcentral.com/articles/10.1186/s13072-017-0128-2)
+__Paper Link:__ [Click here](https://epigeneticsandchromatin.biomedcentral.com/articles/10.1186/s13072-017-0128-2)
 
 Overview
 ======
