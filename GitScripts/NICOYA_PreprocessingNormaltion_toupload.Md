@@ -5,7 +5,7 @@ date: "January 9, 2017"
 output: html_document
 ---
 
-Please email: lmcewen@cmmt.ubc.ca if you have any questions about this code. 
+Please email: lmcewen@bcchr.ca if you have any questions about this code. 
 
 ### Publication details (currently submitted to Epigenetics and Chromatin):
 __Title:__ Differential DNA methylation and lymphocyte proportions in a Costa Rican high longevity region
@@ -25,8 +25,8 @@ Study Design:
 95 samples + 1 technical replicate, randomly distributed across 12 arrays ("chips", as each chip has 12 samples) run in one batch.
 
 All R objects and files are located:
-1. Kobor Server: big_data/lmcewen/Rehkopf
-2. Stanford Server: [LINK](to be determined)
+1. (locally) Kobor Server: big_data/lmcewen/Rehkopf
+2. (by request) Stanford Server: please email drehkopf@stanford.edu or lmcewen@bcchr.ca
 
 450K Data preprocessing
 ======
