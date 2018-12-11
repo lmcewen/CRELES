@@ -30,16 +30,16 @@ All R objects and files are located:
 
 LINKS TO CODE:
 
-[Preprocessing & Normalization](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_PreprocessingNormaltion_toupload.Rmd)
+[Preprocessing & Normalization](https://github.com/lmcewen/CRELES/blob/master/GitScripts/PreprocessingNormalization.md)
 
-[DNAm Age Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_DNAmAgeAnalysis_toupload.Rmd)
+[DNAm Age Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_DNAmAgeAnalysis_toupload.md)
 
-[Cell Type Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_CellTypeAnalyses_toupload.Rmd)
+[Cell Type Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_CellTypeAnalyses_toupload.md)
 
-[DMRcate Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_DMRCATE_toupload.Rmd)
+[DMRcate Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_DMRCATE_toupload.md)
 
-[DNAm Variability Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_DNAm_Variability_analyses_toupload.Rmd)
+[DNAm Variability Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_DNAm_Variability_analyses_toupload.md)
 
-[GLINT Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/Nicoya_glint.Rmd)
+[GLINT Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/Nicoya_glint.md)
 
-[Pyro verification](https://github.com/lmcewen/CRELES/blob/master/GitScripts/Nicoya_pyro.Rmd)
+[Pyro verification](https://github.com/lmcewen/CRELES/blob/master/GitScripts/Nicoya_pyro.md)
