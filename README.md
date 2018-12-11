@@ -7,7 +7,7 @@ output: html_document
 
 # CRELES Study
 
-### Publication details (currently submitted to Epigenetics and Chromatin):
+### Publication details (accepted in Epigenetics and Chromatin):
 __Title:__ Differential DNA methylation and lymphocyte proportions in a Costa Rican high longevity region
 
 __Authors:__ Lisa M. McEwen, BSc; Alexander M. Morin, BSc.; Rachel D. Edgar, MSc.; Julia L. MacIsaac, PhD; Meaghan J. Jones, PhD.; William H. Dow, PhD.; Luis Rosero-Bixby, PhD.; Michael S. Kobor, PhD.; David H. Rehkopf, ScD., MPH.
@@ -25,8 +25,8 @@ Study Design:
 95 samples + 1 technical replicate, randomly distributed across 12 arrays ("chips", as each chip has 12 samples) run in one batch.
 
 All R objects and files are located:
-1. Kobor Server: big_data/lmcewen/Rehkopf
-2. Stanford Server: [LINK](tbd)
+1. Kobor Server: big_data/lmcewen/Rehkopf (locally saved)
+2. Stanford Server: [LINK](tbd) (please email drehkopf@stanford.edu or lmcewen@bcchr.ca to request access)
 
 LINKS TO CODE:
 
