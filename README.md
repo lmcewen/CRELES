@@ -30,7 +30,7 @@ All R objects and files are located:
 
 LINKS TO CODE:
 
-[Preprocessing & Normalization](https://github.com/lmcewen/CRELES/blob/master/GitScripts/PreprocessingNormalization.md)
+[Preprocessing & Normalization](https://github.com/lmcewen/CRELES/blob/master/PreprocessingNormalization.Md)
 
 [DNAm Age Analysis](https://github.com/lmcewen/CRELES/blob/master/GitScripts/NICOYA_DNAmAgeAnalysis_toupload.md)
 
