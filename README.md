@@ -30,7 +30,7 @@ Study Design:
 
 All R objects and files are located:
 1. Kobor Server: big_data/lmcewen/Rehkopf (locally saved)
-2. Stanford Server: [LINK](tbd) (please email drehkopf@stanford.edu or lmcewen@bcchr.ca to request access)
+2. Stanford Server: please email drehkopf@stanford.edu or lmcewen@bcchr.ca to request access
 
 LINKS TO CODE:
 
